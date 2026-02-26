@@ -452,9 +452,15 @@ export default function App() {
 
   useEffect(() => {
     fetch('/api/professors')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
       .then(data => setProfessors(data))
-      .catch(err => console.error("Error fetching professors:", err));
+      .catch(err => {
+        console.warn("API not available (static host), using empty professors list.");
+        setProfessors([]);
+      });
   }, []);
 
   const resetFields = () => {
@@ -465,24 +471,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#DAE0E6]">
-      {/* SEO Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebApplication",
-          "name": "EUFreelance",
-          "url": "https://eufreelance.run.app",
-          "description": "Free European Freelance Simulator and Invoice Generator. Built as a common good for the EU freelance community.",
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "All",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "EUR"
-          }
-        })}
-      </script>
-
       {/* Navigation */}
       <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
