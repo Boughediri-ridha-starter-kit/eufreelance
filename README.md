@@ -32,7 +32,7 @@ Apporter de la transparence fiscale et simplifier la gestion administrative pour
    ```
 
 ## ⚖️ Licence
-Ce projet est mis à disposition de la communauté en tant que bien commun.
+Ce projet est mis à disposition de la communauté en tant que bien commun pour les developpeurs et les vibers.
 
 ---
 Construit avec ❤️ par **boughediri.r** pour la communauté européenne.
